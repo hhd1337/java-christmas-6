@@ -7,4 +7,8 @@ public class InputView {
     public String inputDate() {
         return Console.readLine();
     }
+
+    public String inputOrderMenuAndCounts() {
+        return Console.readLine();
+    }
 }

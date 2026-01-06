@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.domain.Order;
 import christmas.view.OutputView;
 import java.time.LocalDate;
 
@@ -15,6 +16,9 @@ public class ChristmasController {
     public void process() {
         outputView.printHelloAndDateInputPrompt();
         LocalDate date = inputHandler.inputDate();
+
+        outputView.printOrderMenuAndCountsInputPrompt();
+        Order initOrder = inputHandler.inputOrderMenuAndCounts(date);
 
 
     }
