@@ -20,6 +20,11 @@ public class ChristmasController {
         outputView.printOrderMenuAndCountsInputPrompt();
         Order initOrder = inputHandler.inputOrderMenuAndCounts(date);
 
+        // 계산해서 initOrder 다 채워놓기
+        initOrder.calculateBenefits();
+
+        outputView.printEventResultHeader(date.getMonth().getValue(), date.getDayOfMonth());
+
 
     }
 }

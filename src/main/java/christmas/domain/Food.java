@@ -43,4 +43,8 @@ public enum Food {
     public FoodCategory getFoodCategory() {
         return foodCategory;
     }
+
+    public int getPrice() {
+        return price;
+    }
 }
