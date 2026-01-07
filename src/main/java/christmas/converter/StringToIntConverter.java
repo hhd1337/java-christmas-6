@@ -6,7 +6,7 @@ public class StringToIntConverter implements Converter<String, Integer> {
         try {
             return Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바른 정수 형식으로 입력해주세요.");
+            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 

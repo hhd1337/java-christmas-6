@@ -38,18 +38,21 @@ public class Order {
             int count = foodCountMap.get(key);
             this.totalPrice += key.getPrice() * count;
         }
+        discountedPrice = totalPrice;
 
         if (totalPrice < TOTAL_PRICE_MIN_FOR_BENEFIT) {
             return;
         }
 
         List<Food> foodList = new ArrayList<>(foodCountMap.keySet());
-        int dessertCount = (int) foodList.stream()
+        int dessertCount = foodList.stream()
                 .filter(food -> food.getFoodCategory().equals(FoodCategory.DESSERT))
-                .count();
-        int mainCount = (int) foodList.stream()
+                .mapToInt(food -> foodCountMap.get(food))
+                .sum();
+        int mainCount = foodList.stream()
                 .filter(food -> food.getFoodCategory().equals(FoodCategory.MAIN))
-                .count();
+                .mapToInt(food -> foodCountMap.get(food))
+                .sum();
         discounts.calculateDiscounts(date, dessertCount, mainCount);
 
         discountedPrice = totalPrice - discounts.getTotalDiscountAmount();
@@ -64,5 +67,37 @@ public class Order {
 
         // 총혜택 금액에 따라 다른 이벤트 배지를 부여
         benefitBadge = BenefitBadge.findByBenefitAmountOrNull(totalBenefitAmount);
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public int getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public boolean isGiveChampagne() {
+        return giveChampagne;
+    }
+
+    public int getTotalBenefitAmount() {
+        return totalBenefitAmount;
+    }
+
+    public BenefitBadge getBenefitBadge() {
+        return benefitBadge;
+    }
+
+    public Discounts getDiscounts() {
+        return discounts;
+    }
+
+    public Map<Food, Integer> getFoodCountMap() {
+        return foodCountMap;
     }
 }

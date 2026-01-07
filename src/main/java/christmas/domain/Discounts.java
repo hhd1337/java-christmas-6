@@ -73,4 +73,19 @@ public class Discounts {
         return dayOfWeek <= 4 || dayOfWeek == 7;
     }
 
+    public int getChristmasDiscountAmount() {
+        return christmasDiscountAmount;
+    }
+
+    public int getWeekDayDiscountAmount() {
+        return weekDayDiscountAmount;
+    }
+
+    public int getWeekEndDiscountAmount() {
+        return weekEndDiscountAmount;
+    }
+
+    public int getSpecialDiscountAmount() {
+        return specialDiscountAmount;
+    }
 }
